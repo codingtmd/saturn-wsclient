@@ -24,6 +24,8 @@ class ChainTalker {
 
     void transfer_sync(const string& from, const string& to, string amount, string memo);
 
+    string suggest_brain_key(); 
+    
     void create_account_with_brain_key_sync(const string& brain_key, const string& account_name);
 
     void send_and_receive();

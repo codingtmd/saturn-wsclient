@@ -12,7 +12,8 @@ using namespace web::websockets::client;
 
 websocket_outgoing_message format_send_message(const string& msg) {
     websocket_outgoing_message out_msg;
-    out_msg.set_utf8_message("msg");
+    out_msg.set_utf8_message(msg);
+    cout << msg << endl;
     return out_msg;
 }
 
@@ -56,6 +57,21 @@ void chainapi::ChainTalker::import_user_sync(const string& id, const string& key
     }).then([](string body) {
         cout << body << endl; // or customized logic here to handle error and return
     }).wait();
+}
+
+string chainapi::ChainTalker::suggest_brain_key() {
+    string command =
+        "{\"id\":1,\"method\":\"call\",\"params\":[0,\"suggest_brain_key\",[]]}";
+
+    _client.send(format_send_message(command)).wait();
+
+
+    _client.receive().then([](websocket_incoming_message in_msg) {
+        return in_msg.extract_string();
+    }).then([](string body) {
+        return body; // or customized logic here to handle error and return
+    }).wait();
+
 }
 
 void chainapi::ChainTalker::transfer_sync(const string& from, const string& to, string amount, string memo){
