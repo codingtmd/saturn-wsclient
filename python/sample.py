@@ -29,7 +29,7 @@ def main():
 
     brain_key, wif_key, pub_key = loop.run_until_complete(tester.suggest_brain_key())
     new_id = tester.id_generator()
-    loop.run_until_complete(tester.create_account_with_brain_key(brain_key, new_id, "init1", "init1"))
+    loop.run_until_complete(tester.create_account_with_brain_key(brain_key, new_id, "shxyan", "shxyan"))
     
     # transfer money from pre-setting user to new user
     loop.run_until_complete(tester.transfer("shxyan", new_id, "100", "test trasnaction"))
