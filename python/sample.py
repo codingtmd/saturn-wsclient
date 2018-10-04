@@ -25,14 +25,14 @@ def main():
     loop.run_until_complete(tester.unlock(FLAGS.pwd))
 
     # import a pre-setting user 
-    loop.run_until_complete(tester.import_key("shxyan", "5Jrh8UV5JLXAbGsVZDvK2ytq6HtfLghoEyLCnBp8dtA23kfhFh4"))
+    loop.run_until_complete(tester.import_key("XX", "YYYY"))
 
     brain_key, wif_key, pub_key = loop.run_until_complete(tester.suggest_brain_key())
     new_id = tester.id_generator()
-    loop.run_until_complete(tester.create_account_with_brain_key(brain_key, new_id, "shxyan", "shxyan"))
+    loop.run_until_complete(tester.create_account_with_brain_key(brain_key, new_id, "XXX", "XXX"))
     
     # transfer money from pre-setting user to new user
-    loop.run_until_complete(tester.transfer("shxyan", new_id, "100", "test trasnaction"))
+    loop.run_until_complete(tester.transfer("XXX", new_id, "100", "test trasnaction"))
 
 
 if __name__ == "__main__":
